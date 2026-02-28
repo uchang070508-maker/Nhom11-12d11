@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+  <title>Trang Chủ | Tỉnh Vĩnh Long Mới</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+    <h1>TỈNH VĨNH LONG MỚI</h1>
+    <p>Gồm Vĩnh Long – Bến Tre – Trà Vinh</p>
+</header>
+
+
+<!-- MENU -->
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+<div class="toggle-theme" onclick="toggleTheme()"> ☀️</div>
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>Giới thiệu tổng quan</h2>
+    <p>
+        Tỉnh Vĩnh Long mới được hình thành từ sự hợp nhất
+        Vĩnh Long, Bến Tre và Trà Vinh.
+        Đây là khu vực thuộc Đồng bằng sông Cửu Long,
+        có hệ thống sông ngòi chằng chịt,
+        giàu tiềm năng về nông nghiệp, thủy sản,
+        kinh tế biển và du lịch sinh thái.
+    </p>
+</section>
+
+
+<!-- GIỚI THIỆU NGẮN -->
+<section class="intro">
+    <h2>Đặc điểm nổi bật</h2>
+    <p>
+        Khu vực có thế mạnh về trồng lúa, dừa,
+        nuôi trồng thủy sản và phát triển cảng biển.
+        Văn hóa đa dạng với sự giao thoa của người Kinh,
+        Khmer và Hoa, tạo nên bản sắc độc đáo.
+    </p>
+</section>
+
+
+<!-- NỘI DUNG CHÍNH -->
+<section class="features">
+    <h2>Chức năng Website</h2>
+
+    <div class="feature-box">
+        <h3>📋 Thông tin chi tiết</h3>
+        <p>Thông số kỹ thuật, năm xây dựng, thiết kế và ý nghĩa kinh tế – xã hội.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>📊 So sánh kỹ thuật</h3>
+        <p>Biểu đồ chiều dài, vốn đầu tư, năm hoàn thành giữa các cầu.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>🗺 Bản đồ tương tác</h3>
+        <p>Hiển thị vị trí cầu, sông bắc qua và tính khoảng cách giữa các cầu.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>🖼 Gallery & So sánh ảnh</h3>
+        <p>Xem ảnh toàn màn hình và so sánh ảnh cũ – mới của cầu.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>📚 Giáo dục</h3>
+        <p>Thuật ngữ kỹ thuật, infographic quy trình xây cầu và quiz kiến thức.</p>
+    </div>
+</section>
+
+<!-- THỐNG KÊ -->
+<section class="stats">
+    <div class="stat">
+        <h3>3</h3>
+        <p>Tỉnh hợp nhất</p>
+    </div>
+
+    <div class="stat">
+        <h3>17.000+</h3>
+        <p>Km² diện tích ước tính</p>
+    </div>
+
+    <div class="stat">
+        <h3>4+ triệu</h3>
+        <p>Dân số ước tính</p>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Tìm hiểu chi tiết từng cây cầu</h2>
+    <a href="List.html" class="btn">Xem danh sách</a>
+</section>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  } else {
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+   <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 | Website nghiên cứu 8 Cây Cầu </p>
+</footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+</body>
+</html>

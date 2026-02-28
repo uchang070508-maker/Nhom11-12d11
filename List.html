@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách cầu Đông Nam Bộ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+  <h1>CÁC CÂY CẦU TỈNH VĨNH LONG MỚI</h1>
+<p>(Vĩnh Long - Bến Tre - Trà Vinh)</p>
+</header>
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+<div class="toggle-theme" onclick="toggleTheme()"> ☀️</div>
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+
+<section>
+    <h2>Bảng danh sách các cây cầu</h2>
+
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <tr>
+        <th>STT</th>
+        <th>Tên cầu</th>
+        <th>Chi tiết</th>
+    </tr>
+
+<tr><td>1</td><td>Cầu Mỹ Thuận</td><td><a class="btn-detail" href="Detail_CauMyThuan.html">Xem</a></td></tr>
+<tr><td>2</td><td>Cầu Rạch Miễu</td><td><a class="btn-detail" href="Detail_CauRachMieu.html">Xem</a></td></tr>
+<tr><td>3</td><td>Cầu Cổ Chiên</td><td><a class="btn-detail" href="Detail_CauCoChien.html">Xem</a></td></tr>
+<tr><td>4</td><td>Cầu Hàm Luông</td><td><a class="btn-detail" href="Detail_CauHamLuong.html">Xem</a></td></tr>
+<tr><td>5</td><td>Cầu An Hóa</td><td><a class="btn-detail" href="Detail_CauAnHoa.html">Xem</a></td></tr>
+<tr><td>6</td><td>Cầu Cái Cam</td><td><a class="btn-detail" href="Detail_CauCaiCam2.html">Xem</a></td></tr>
+<tr><td>7</td><td>Cầu Láng Chim</td><td><a class="btn-detail" href="Detail_CauLangChim.html">Xem</a></td></tr>
+<tr><td>8</td><td>Cầu Đình Khao</td><td><a class="btn-detail" href="Detail_CauDinhKhao.html">Xem</a></td></tr>
+
+</table>
+
+</section>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  } else {
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<footer>
+    <p>© 2026 | Website Nhóm 11 lớp 12D1</p>
+</footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+</body>
+</html>

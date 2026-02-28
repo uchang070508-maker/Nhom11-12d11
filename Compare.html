@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>So sánh các cây cầu Vĩnh Long - Bến Tre - Trà Vinh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+    <<h1>SO SÁNH CÁC CÂY CẦU VĨNH LONG - BẾN TRE - TRÀ VINH</h1>
+<p>Phân tích tổng hợp các công trình giao thông tiêu biểu khu vực</p>
+</header>
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+<div class="toggle-theme" onclick="toggleTheme()"> ☀️</div>
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<body>
+
+<div class="compare-advanced">
+
+    <h1>So sánh kỹ thuật các cây cầu </h1>
+
+    <!-- BẢNG SO SÁNH KỸ THUẬT -->
+    <table class="compare-table">
+<tr>
+<th>Tên cầu</th>
+<th>Chiều dài (m)</th>
+<th>Năm hoàn thành</th>
+<th>Tổng mức đầu tư</th>
+<th>Loại cầu</th>
+</tr>
+
+<tr>
+<td>Cầu Mỹ Thuận</td>
+<td>1535</td>
+<td>2000</td>
+<td>91 triệu USD</td>
+<td>Dây văng</td>
+</tr>
+
+<tr>
+<td>Cầu Rạch Miễu</td>
+<td>8331</td>
+<td>2009</td>
+<td>1187 tỷ</td>
+<td>Dây văng</td>
+</tr>
+
+<tr>
+<td>Cầu Cổ Chiên</td>
+<td>1590</td>
+<td>2015</td>
+<td>2308 tỷ</td>
+<td>BTCT đúc hẫng</td>
+</tr>
+
+<tr>
+<td>Cầu Hàm Luông</td>
+<td>8216</td>
+<td>2010</td>
+<td>786 tỷ</td>
+<td>BTCT</td>
+</tr>
+
+<tr>
+<td>Cầu An Hóa</td>
+<td>281</td>
+<td>1998</td>
+<td>-</td>
+<td>Dây văng</td>
+</tr>
+
+<tr>
+<td>Cầu Cái Cam</td>
+<td>780</td>
+<td>2022</td>
+<td>664 tỷ</td>
+<td>BTCT</td>
+</tr>
+
+<tr>
+<td>Cầu Láng Chim</td>
+<td>445</td>
+<td>2013</td>
+<td>147 tỷ</td>
+<td>BTCT</td>
+</tr>
+
+<tr>
+<td>Cầu Đình Khao</td>
+<td>4300</td>
+<td>Đang xây dựng</td>
+<td>2852 tỷ</td>
+<td>PPP - BOT</td>
+</tr>
+</table>
+
+    <!-- PHÂN TÍCH -->
+    <div class="analysis-section">
+        <h2>Phân tích nổi bật</h2>
+        <p><strong>Cầu dài nhất:</strong> Cầu Rạch Miễu< (2868m)</p>
+        <p><strong>Cầu mới nhất:</strong> Cầu Đình Khao (Đang trong quá trình xây dựng )</p>
+        <p><strong>Cầu đầu tư lớn nhất:</strong> Cầu Đình Khao</p>
+    </div>
+
+    <!-- BIỂU ĐỒ -->
+    <div class="chart-section">
+        <h2>So sánh chiều dài</h2>
+        <canvas id="lengthChart"></canvas>
+    </div>
+
+    <div class="chart-section">
+        <h2>So sánh năm hoàn thành</h2>
+        <canvas id="yearChart"></canvas>
+    </div>
+
+    <div class="chart-section">
+        <h2>So sánh tổng mức đầu tư</h2>
+        <canvas id="costChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+const bridges = [
+"Mỹ Thuận",
+"Rạch Miễu",
+"Cổ Chiên",
+"Hàm Luông",
+"An Hóa",
+"Cái Cam 2",
+"Láng Chim",
+"Đình Khao"
+];
+
+const lengthData = [1535,8331,1590,8216,281,780,445,4300];
+const yearData   = [2000,2009,2015,2010,1998,2022,2013,2026];
+const costData   = [91,3300,2308,786,0,664,147,2852];
+
+new Chart(document.getElementById("lengthChart"), {
+    type: "bar",
+    data: {
+        labels: bridges,
+        datasets: [{
+            label: "Chiều dài (m)",
+            data: lengthData
+        }]
+    }
+});
+
+new Chart(document.getElementById("yearChart"), {
+    type: "bar",
+    data: {
+        labels: bridges,
+        datasets: [{
+            label: "Năm hoàn thành",
+            data: yearData
+        }]
+    }
+});
+
+new Chart(document.getElementById("costChart"), {
+    type: "bar",
+    data: {
+        labels: bridges,
+        datasets: [{
+            label: "Tổng đầu tư (tỷ đồng)",
+            data: costData
+        }]
+    }
+});
+</script>
+    <script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  } else {
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+</body>
+</html>

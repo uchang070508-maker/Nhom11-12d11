@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Cầu Cái Cam 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+<h1>CẦU CÁI CAM 2</h1>
+<p>Công trình giao thông tại Vĩnh Long</p>
+</header>
+
+<nav>
+  <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+
+<audio id="bgMusic" loop>
+<source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<section>
+<h2>Giới thiệu chung</h2>
+<p>
+Cầu Cái Cam 2 thuộc thành phố Vĩnh Long,
+giúp giảm tải giao thông nội đô và kết nối thuận tiện hơn.
+</p>
+</section>
+
+<section>
+<h2>Hình ảnh</h2>
+<img src="images/cau-cai-cam2.jpg" width="100%">
+</section>
+
+<section>
+<h2>Thông tin kỹ thuật</h2>
+<table>
+<tr><th>Tên chính thức:</th><td>Cầu Cái Cam 2</td></tr>
+<tr><th>Vị trí:</th><td>Trên đường Võ Văn Kiệt, TP. Vĩnh Long.</td></tr>
+<tr><th>Bắc qua:</th><td>Sông Cái Cam</td></tr>
+<tr><th>Năm khởi công:</th><td>30/10/2020</td></tr>
+<tr><th>Năm hoàn thành:</th><td>15/11/2022</td></tr>
+<tr><th>Chiều dài:</th><td>780 m</td></tr>
+<tr><th>Tổng mức đầu tư:</th><td>664 tỷ VNĐ</td></tr>
+<tr><th>Kết cấu:</th><td>Cầu bê tông cốt thép</td></tr>
+<tr><th>Vai trò:</th><td>Kết nối giao thông nội tỉnh và Quốc lộ 1A</td></tr>
+</table>
+
+</section>
+
+<section>
+<h2>Ý nghĩa</h2>
+<p>Góp phần phát triển hạ tầng đô thị Vĩnh Long.</p>
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/QyRveO3Y-JQ"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/QyRveO3Y-JQ" target="_blank">
+      YouTube – Video giới thiệu cầu
+    </a>
+  </p>
+</section>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+document.body.classList.toggle("dark");
+document.querySelector(".toggle-theme").textContent=
+document.body.classList.contains("dark")?"🌙":"☀️";
+localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light");
+}
+window.onload=function(){
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+document.querySelector(".toggle-theme").textContent="🌙";
+}};
+</script>
+
+<script>
+const bgMusic=document.getElementById("bgMusic");
+let musicOn=localStorage.getItem("music")!=="off";
+if(musicOn){bgMusic.volume=0.4;bgMusic.play().catch(()=>{});}
+function toggleMusic(){
+musicOn=!musicOn;
+if(musicOn){bgMusic.play();localStorage.setItem("music","on");}
+else{bgMusic.pause();localStorage.setItem("music","off");}
+}
+</script>
+
+</body>
+</html>

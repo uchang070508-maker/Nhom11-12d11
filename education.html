@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tính Năng Giáo Dục - Tỉnh Vĩnh Long Mới</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.edu-container{
+    max-width:1100px;
+    margin:50px auto;
+    padding:20px;
+}
+
+.edu-container h1{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0d47a1;
+}
+
+/* THUẬT NGỮ */
+.term-box{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+
+.term-box h3{
+    color:#1565c0;
+    margin-bottom:8px;
+}
+
+/* INFOGRAPHIC */
+.infographic{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    margin:50px 0;
+}
+
+.step{
+    flex:1;
+    min-width:200px;
+    margin:10px;
+    padding:20px;
+    text-align:center;
+    background:#e3f2fd;
+    border-radius:15px;
+}
+
+.step span{
+    font-size:28px;
+    display:block;
+    margin-bottom:10px;
+}
+
+/* QUIZ */
+.quiz-box{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+}
+
+.quiz-box h3{
+    margin-bottom:15px;
+}
+
+.quiz-box label{
+    display:block;
+    margin-bottom:8px;
+}
+
+.quiz-box button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(135deg,#1565c0,#1e88e5);
+    color:white;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:20px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* TÀI LIỆU */
+.reference{
+    margin-top:50px;
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+<h1>Tìm Hiểu Về Tỉnh Vĩnh Long Mới</h1>
+</header>
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<section class="edu-container">
+
+<h2>Thuật Ngữ Kỹ Thuật Cầu (Giải thích đơn giản)</h2>
+
+<div class="term-box">
+<h3>Cầu dây văng</h3>
+<p>
+Là loại cầu có các dây cáp nối từ trụ xuống mặt cầu,
+giúp chịu lực và tạo hình dáng hiện đại.
+Ví dụ: Cầu Cổ Chiên.
+</p>
+</div>
+
+<div class="term-box">
+<h3>Trụ cầu</h3>
+<p>
+Là phần cột lớn nâng đỡ toàn bộ kết cấu cầu,
+được xây dựng rất chắc chắn để chịu tải trọng lớn.
+</p>
+</div>
+
+<div class="term-box">
+<h3>Nhịp cầu</h3>
+<p>
+Là khoảng cách giữa hai trụ cầu.
+Nhịp càng dài thì kỹ thuật xây dựng càng phức tạp.
+</p>
+</div>
+
+<div class="term-box">
+<h3>Tải trọng</h3>
+<p>
+Là khối lượng tối đa mà cầu có thể chịu được
+bao gồm xe cộ và hàng hóa lưu thông.
+</p>
+</div>
+
+<div class="term-box">
+<h3>Kết cấu bê tông cốt thép</h3>
+<p>
+Là sự kết hợp giữa bê tông và thép
+giúp cầu bền chắc và sử dụng lâu dài.
+</p>
+</div>
+
+
+<h2>Infographic – Vai Trò Cầu Trong Phát Triển</h2>
+
+<div class="infographic">
+    <div class="step">
+        <span>🌉</span>
+        <p>Kết nối giao thông liên tỉnh</p>
+    </div>
+    <div class="step">
+        <span>🚛</span>
+        <p>Vận chuyển hàng hóa nông sản</p>
+    </div>
+    <div class="step">
+        <span>🏗</span>
+        <p>Thúc đẩy phát triển đô thị</p>
+    </div>
+    <div class="step">
+        <span>🌊</span>
+        <p>Vượt sông lớn khu vực Mekong</p>
+    </div>
+    <div class="step">
+        <span>📈</span>
+        <p>Tăng trưởng kinh tế vùng</p>
+    </div>
+</div>
+
+
+<h2>Bài Quiz Kiến Thức (5 câu)</h2>
+
+<div class="quiz-box">
+
+<h3>1. Cầu Cổ Chiên nối hai tỉnh nào?</h3>
+<label><input type="radio" name="q1" value="1"> Trà Vinh – Bến Tre</label>
+<label><input type="radio" name="q1" value="0"> Vĩnh Long – Cần Thơ</label>
+
+<h3>2. Cầu Mỹ Thuận bắc qua sông nào?</h3>
+<label><input type="radio" name="q2" value="1"> Sông Tiền</label>
+<label><input type="radio" name="q2" value="0"> Sông Hậu</label>
+
+<h3>3. Cầu dây văng có đặc điểm gì?</h3>
+<label><input type="radio" name="q3" value="1"> Có dây cáp chịu lực</label>
+<label><input type="radio" name="q3" value="0"> Làm hoàn toàn bằng gỗ</label>
+
+<h3>4. Vai trò quan trọng nhất của cầu là gì?</h3>
+<label><input type="radio" name="q4" value="1"> Kết nối giao thông</label>
+<label><input type="radio" name="q4" value="0"> Trang trí cảnh quan</label>
+
+<h3>5. Cầu giúp phát triển lĩnh vực nào?</h3>
+<label><input type="radio" name="q5" value="1"> Kinh tế & thương mại</label>
+<label><input type="radio" name="q5" value="0"> Sa mạc hóa</label>
+
+<button onclick="checkQuiz()">Nộp bài</button>
+
+<div class="result" id="quizResult"></div>
+
+</div>
+
+
+<div class="reference">
+<h2>Tài Liệu Tham Khảo</h2>
+<ul>
+<li>Thông tin về Cầu Cổ Chiên</li>
+<li>Thông tin về Cầu Mỹ Thuận</li>
+<li>Tài liệu kỹ thuật cầu đường - Bộ GTVT</li>
+<li>Sách giáo khoa Công nghệ & Địa lý</li>
+</ul>
+</div>
+
+</section>
+
+
+<footer>
+© 2026 Nhóm 11 lớp 12D1
+</footer>
+
+<script>
+function checkQuiz(){
+    let score=0;
+
+    for(let i=1;i<=5;i++){
+        let answer=document.querySelector('input[name="q'+i+'"]:checked');
+        if(answer){
+            score+=parseInt(answer.value);
+        }
+    }
+
+    document.getElementById("quizResult").innerHTML=
+    "Bạn đạt "+score+"/5 điểm";
+}
+</script>
+    <script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  } else {
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+</body>
+</html>

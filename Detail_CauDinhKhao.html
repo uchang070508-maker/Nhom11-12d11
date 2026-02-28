@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cầu Hàm Luông</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+<h1>CẦU ĐÌNH KHAO</h1>
+<p>Kết nối Vĩnh Long – Bến Tre</p>
+</header>
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<section>
+<h2>Giới thiệu chung</h2>
+<p>
+Cầu Đình Khao bắc qua sông Cổ Chiên,
+giúp việc đi lại giữa hai tỉnh thuận tiện hơn.
+</p>
+</section>
+
+<section>
+<h2>Hình ảnh</h2>
+<img src="images/cau-dinh-khao.jpg" width="100%">
+</section>
+
+<section>
+<h2>Thông tin kỹ thuật</h2>
+<table>
+<tr><th>Tên chính thức:</th><td>Cầu Đình Khao</td></tr>
+<tr><th>Vị trí:</th><td>Nối xã Nhơn Mỹ (tỉnh Vĩnh Long) với xã Phú Phụng (tỉnh Bến Tre)</td></tr>
+<tr><th>Bắc qua:</th><td>Sông Cổ Chiên</td></tr>
+<tr><th>Năm khởi công:</th><td>19/12/2025</td></tr>
+<tr><th>Dự kiến hoàn thành:</th><td>Sau 3 năm thi công</td></tr>
+<tr><th>Chiều dài:</th><td>4,3 km (riêng cầu chính hơn 1,5 km)</td></tr>
+<tr><th>Bề rộng:</th><td>17,5 m (4 làn xe)</td></tr>
+<tr><th>Tổng mức đầu tư:</th><td>Hơn 2.852 tỷ VNĐ</td></tr>
+<tr><th>Hình thức đầu tư:</th><td>PPP, hợp đồng BOT (xây dựng - kinh doanh - chuyển giao)</td></tr>
+<tr><th>Chủ đầu tư:</th><td>Ban Quản lý dự án giao thông tỉnh Vĩnh Long</td></tr>
+<tr><th>Vai trò:</th><td>Thay thế phà Đình Khao, tăng kết nối Quốc lộ 57, Quốc lộ 53 với Quốc lộ 1</td></tr>
+</table>
+
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/MEbfzH3YBd4"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/MEbfzH3YBd4" target="_blank">
+      YouTube – Video giới thiệu cầu
+    </a>
+  </p>
+</section>
+<footer>
+    <p>© 2026 | Website Nhóm 11 lớp 12D1</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const btn = document.querySelector(".toggle-theme");
+  btn.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>

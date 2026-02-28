@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bản đồ các cầu </title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+
+<style>
+#map {
+    height: 650px;
+    max-width: 1200px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.map-controls{
+    max-width: 1200px;
+    margin: auto;
+    text-align:center;
+    padding:20px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.map-controls select{
+    padding:10px 15px;
+    border-radius:10px;
+    margin:5px;
+    border:1px solid #ccc;
+}
+
+.map-controls button{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(135deg,#1565c0,#1e88e5);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.map-controls button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(21,101,192,0.4);
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+<h1>Bản đồ các cây cầu </h1>
+</header>
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<div id="map"></div>
+
+<div class="map-controls">
+    <select id="bridge1"></select>
+    <select id="bridge2"></select>
+    <button onclick="calculateDistance()">Tính khoảng cách</button>
+    <button onclick="drawRoute()">Vẽ hành trình</button>
+    <button onclick="resetRoute()">Reset</button>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+<script>
+
+// MAP INIT
+var map = L.map('map',{zoomControl:false}).setView([10.85,106.85],9);
+L.control.zoom({position:'topright'}).addTo(map);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap'
+}).addTo(map);
+
+// ICON RIÊNG
+var bridgeIcon = L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconSize: [35,35]
+});
+
+// 8 CẦU
+const bridges = [
+{name:"Cầu Mỹ Thuận", river:"Sông Tiền", coords:[10.2700,105.9300]},
+{name:"Cầu Rạch Miễu", river:"Sông Tiền", coords:[10.2560,106.3630]},
+{name:"Cầu Cổ Chiên", river:"Sông Cổ Chiên", coords:[9.9330,106.3500]},
+{name:"Cầu Hàm Luông", river:"Sông Hàm Luông", coords:[10.2410,106.3750]},
+{name:"Cầu An Hóa", river:"Kênh Giao Hòa", coords:[10.3500,106.3000]},
+{name:"Cầu Cái Cam", river:"Sông Cái Cam", coords:[10.2520,105.9700]},
+{name:"Cầu Láng Chim", river:"-", coords:[9.6200,106.5200]},
+{name:"Cầu Đình Khao", river:"Sông Cổ Chiên", coords:[10.1500,106.2800]}
+];
+
+// MARKER
+bridges.forEach(b=>{
+    L.marker(b.coords,{icon:bridgeIcon})
+    .addTo(map)
+    .bindPopup(`
+        <b style="font-size:16px">${b.name}</b>
+        <br>Bắc qua: ${b.river}
+    `);
+});
+
+// DROPDOWN
+const select1=document.getElementById("bridge1");
+const select2=document.getElementById("bridge2");
+
+bridges.forEach((b,i)=>{
+    select1.innerHTML+=`<option value="${i}">${b.name}</option>`;
+    select2.innerHTML+=`<option value="${i}">${b.name}</option>`;
+});
+
+let routingControl;
+let distanceLine;
+
+// TÍNH KHOẢNG CÁCH
+function calculateDistance(){
+    let i1=select1.value;
+    let i2=select2.value;
+
+    if(i1===i2){
+        alert("Chọn 2 cầu khác nhau!");
+        return;
+    }
+
+    let p1=L.latLng(bridges[i1].coords);
+    let p2=L.latLng(bridges[i2].coords);
+
+    let distance=p1.distanceTo(p2)/1000;
+
+    if(distanceLine){
+        map.removeLayer(distanceLine);
+    }
+
+    distanceLine=L.polyline([p1,p2],{
+        color:'#e53935',
+        dashArray:'6'
+    }).addTo(map);
+
+    distanceLine.bindTooltip(
+        "Khoảng cách: "+distance.toFixed(2)+" km",
+        {permanent:true, direction:'center'}
+    ).openTooltip();
+
+    map.fitBounds(distanceLine.getBounds());
+}
+
+// VẼ TUYẾN ĐƯỜNG
+function drawRoute(){
+
+    let i1=select1.value;
+    let i2=select2.value;
+
+    if(i1===i2){
+        alert("Chọn 2 cầu khác nhau!");
+        return;
+    }
+
+    if(routingControl){
+        map.removeControl(routingControl);
+    }
+
+    routingControl=L.Routing.control({
+        waypoints:[
+            L.latLng(bridges[i1].coords),
+            L.latLng(bridges[i2].coords)
+        ],
+        routeWhileDragging:false,
+        lineOptions:{
+            styles:[{color:'#1565c0',weight:6}]
+        }
+    }).addTo(map);
+}
+
+// RESET
+function resetRoute(){
+    if(routingControl){
+        map.removeControl(routingControl);
+    }
+    if(distanceLine){
+        map.removeLayer(distanceLine);
+    }
+    map.setView([10.85,106.85],9);
+}
+
+</script>
+    <script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  } else {
+    btn.textContent = "🌙";
+  }
+};
+</script>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+</body>
+</html>

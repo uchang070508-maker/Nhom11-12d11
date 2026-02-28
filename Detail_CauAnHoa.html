@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Cầu Cái Cam 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+<h1>CẦU AN HÓA</h1>
+<p>Kết nối Bến Tre – Tiền Giang</p>
+</header>
+<nav>
+  <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+
+<audio id="bgMusic" loop>
+<source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<section>
+<h2>Giới thiệu chung</h2>
+<p>
+Cầu An Hóa nối Bến Tre với Tiền Giang,
+đóng vai trò quan trọng trong giao thông khu vực.
+</p>
+</section>
+
+<section>
+<h2>Hình ảnh</h2>
+<img src="images/cau-an-hoa.jpg" width="100%">
+</section>
+
+<section>
+<table>
+<tr><th>Tên chính thức:</th><td>Cầu An Hóa</td></tr>
+<tr><th>Tên gọi dân gian:</th><td>Cầu An Hóa</td></tr>
+<tr><th>Vị trí:</th><td>Nối liền hai huyện Châu Thành và Bình Đại, tỉnh Bến Tre, qua kênh Giao Hòa</td></tr>
+<tr><th>Năm hoàn thành:</th><td>1998</td></tr>
+<tr><th>Chiều dài:</th><td>281,4 m</td></tr>
+<tr><th>Chiều rộng:</th><td>8 m</td></tr>
+<tr><th>Loại kiến trúc:</th><td>Cầu dây văng</td></tr>
+<tr><th>Ý nghĩa kinh tế – xã hội:</th>
+<td>Góp phần phát triển giao thông và kinh tế tỉnh Bến Tre.</td></tr>
+<tr><th>Vai trò:</th>
+<td>Là tuyến giao thông quan trọng kết nối hai huyện Châu Thành và Bình Đại, tỉnh Bến Tre.</td></tr>
+</table>
+
+</section>
+
+<section>
+<h2>Ý nghĩa</h2>
+<p>Thúc đẩy giao thương và phát triển kinh tế địa phương.</p>
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/bw8uvTlZYFM"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/bw8uvTlZYFM" target="_blank">
+      YouTube – Video giới thiệu cầu
+    </a>
+  </p>
+</section>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+document.body.classList.toggle("dark");
+document.querySelector(".toggle-theme").textContent=
+document.body.classList.contains("dark")?"🌙":"☀️";
+localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light");
+}
+window.onload=function(){
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+document.querySelector(".toggle-theme").textContent="🌙";
+}};
+</script>
+
+<script>
+const bgMusic=document.getElementById("bgMusic");
+let musicOn=localStorage.getItem("music")!=="off";
+if(musicOn){bgMusic.volume=0.4;bgMusic.play().catch(()=>{});}
+function toggleMusic(){
+musicOn=!musicOn;
+if(musicOn){bgMusic.play();localStorage.setItem("music","on");}
+else{bgMusic.pause();localStorage.setItem("music","off");}
+}
+</script>
+
+</body>
+</html>

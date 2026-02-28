@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cầu Rạch Miễu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+    <h1>CẦU RẠCH MIỄU</h1>
+    <p>Công trình giao thông quan trọng nối Tiền Giang – Bến Tre</p>
+</header>
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+
+<section>
+    <h2>Giới thiệu chung</h2>
+    <p>
+        Cầu Rạch Miễu là cầu dây văng bắc qua sông Tiền,
+        nối Tiền Giang và Bến Tre. Cầu được đưa vào sử dụng năm 2010,
+        thay thế phà Rạch Miễu, giúp giảm ùn tắc và rút ngắn thời gian di chuyển.
+    </p>
+</section>
+
+<section>
+    <h2>Hình ảnh</h2>
+    <img src="images/cau-rach-mieu.jpg" width="100%">
+</section>
+
+<section>
+    <h2>Thông tin kỹ thuật</h2>
+    <table>
+<tr><th>Tên chính thức:</th> <td>Cầu Rạch Miễu</td></tr>
+<tr><th>Tên gọi dân gian:</th> <td> Cầu Rạch Miễu</td></tr>
+<tr><th>Vị trí:</th> <td> Nối Tiền Giang và Bến Tre, qua sông Tiền</</td></tr>>
+<tr><th>Năm khởi công:</th> <td> 30/04/2002</td></tr>
+<tr><th>Năm hoàn thành:</th> <td> 19/01/2009</td></tr>
+<tr><th>Chiều dài:</th> <td> 8.331 m</td></tr>
+<tr><th>Chiều rộng:</th> <td> 17,5 m</td></tr>
+<tr><th>Tải trọng:</th> <td> HL93</td></tr>
+<tr><th>Loại kiến trúc:</th> <td> Cầu dây văng</td></tr>
+<tr><th>Tổng mức đầu tư:</th> <td>Khoảng 3.300 tỷ đồng</td></tr>
+<tr><th>Đơn vị thiết kế – thi công:</th> <td> Việt Nam</td></tr>
+<tr><th>Ý nghĩa kinh tế – xã hội:</th> <td>Giúp Bến Tre thoát khỏi cảnh phụ thuộc phà, thúc đẩy du lịch và thương mại.</td></tr>
+<tr><th>Sự kiện khánh thành:</th> <td> Khánh thành năm 2009</td></tr>
+<tr><th>So sánh:</th> <td> Có quy mô lớn hơn cầu Mỹ Thuận nhưng ra đời sau.</td></tr>
+</table>
+</section>
+
+<section>
+    <h2>Ý nghĩa kinh tế – xã hội</h2>
+    <p>
+        Cầu đóng vai trò quan trọng trong phát triển kinh tế vùng Đồng bằng sông Cửu Long,
+        thúc đẩy giao thương, du lịch và nông nghiệp.
+    </p>
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/NQTQ6pIU3R8"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/NQTQ6pIU3R8" target="_blank">
+      YouTube – Video giới thiệu cầu
+    </a>
+  </p>
+</section>
+<footer>
+    <p>© 2026 | Website Nhóm 11 lớp 12D1</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "🌙";
+  } else {
+    btn.textContent = "☀️";
+  }
+};
+</script>
+
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>

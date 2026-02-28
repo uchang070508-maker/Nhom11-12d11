@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cầu Cổ Chiên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+  <img src="logo.png" alt="Logo Trường">
+  <span class="school-name">Trừờng THPT Phan Liêm</span>
+</div>
+    <h1>CẦU CỔ CHIÊN</h1>
+    <p>Công trình giao thông quan trọng nối Bến Tre – Trà Vinh</p>
+</header>
+
+<nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="list.html">Danh sách cầu</a>
+    <a href="compare.html">So sánh</a>
+    <a href="timeline.html">Lịch sử</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="map.html">Bản đồ</a>
+    <a href="education.html">Giáo dục</a>
+    <a href="contact.html">Liên hệ</a>
+</nav>
+
+<div class="toggle-theme" onclick="toggleTheme()">☀️</div>
+
+<audio id="bgMusic" loop>
+  <source src="sounds/cau.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+
+<section>
+    <h2>Giới thiệu chung</h2>
+    <p>
+        Cầu Cổ Chiên là cây cầu dây văng nối Bến Tre và Trà Vinh,
+        bắc qua sông Cổ Chiên. Đây là một phần của Quốc lộ 60,
+        góp phần rút ngắn thời gian di chuyển giữa các tỉnh ven biển.
+    </p>
+</section>
+
+<section>
+    <h2>Hình ảnh</h2>
+    <img src="images/cau-co-chien.jpg" width="100%">
+</section>
+
+<section>
+    <h2>Thông tin kỹ thuật</h2>
+   <table>
+<tr><th>Tên chính thức:</th><td>Cầu Cổ Chiên</td></tr>
+<tr><th>Vị trí:</th><td>Nối Trà Vinh và Bến Tre</td></tr>
+<tr><th>Năm khởi công:</th><td>07/03/2011</td></tr>
+<tr><th>Năm hoàn thành:</th><td>16/05/2015</td></tr>
+<tr><th>Chiều dài:</th><td>1.590 m</td></tr>
+<tr><th>Chiều rộng:</th><td>16 m</td></tr>
+<tr><th>Tải trọng:</th><td>HL93</td></tr>
+<tr><th>Loại cầu:</th><td>Bê tông dự ứng lực đúc hẫng</td></tr>
+<tr><th>Tổng mức đầu tư:</th><td>Khoảng 2.308 tỷ đồng</td></tr>
+<tr><th>Đơn vị thiết kế – thi công:</th><td>Việt Nam</td></tr>
+<tr><th>Ý nghĩa:</th><td>Thúc đẩy phát triển kinh tế Trà Vinh.</td></tr>
+</table>
+
+</section>
+
+<section>
+    <h2>Ý nghĩa kinh tế</h2>
+    <p>
+        Cầu giúp thay thế phà Cổ Chiên,
+        tạo điều kiện phát triển kinh tế biển,
+        thủy sản và giao thương khu vực.
+    </p>
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/ScohHyClrGg"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/ScohHyClrGg" target="_blank">
+      YouTube – Video giới thiệu cầu
+    </a>
+  </p>
+</section>
+<footer>
+    <p>© 2026 | Website Nhóm 11 lớp 12D1</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const btn = document.querySelector(".toggle-theme");
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
+  } else {
+    btn.textContent = "☀️";
+    localStorage.setItem("theme", "light");
+  }
+}
+
+window.onload = function () {
+  const btn = document.querySelector(".toggle-theme");
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "🌙";
+  } else {
+    btn.textContent = "☀️";
+  }
+};
+</script>
+
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+let musicOn = localStorage.getItem("music") !== "off";
+
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.textContent = "🔇";
+  }
+});
+
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>
